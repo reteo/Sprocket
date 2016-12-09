@@ -33,7 +33,7 @@
         <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Biomes O Plenty ores.'/>
         <Choice value=':= ?false' displayValue='No' description='Biomes O Plenty ores will be handled by Minecraft directly.'/>
       </OptionChoice>
-      <OptionChoice name='cleanUpBiomesOPlenty' displayName='Use Biomes O Plenty Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupBiomesOPlenty'>
+      <OptionChoice name='cleanUpBiomesOPlenty' displayName='Use Biomes O Plenty Cleanup?' default='true' displayState=':= if(?enableBiomesOPlenty, "shown", "hidden")' displayGroup='groupBiomesOPlenty'>
         <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Biomes O Plenty ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
         <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Biomes O Plenty ores.'/>
         <Choice value=':= ?false' displayValue='No' description='Biomes O Plenty ores do not need to be cleaned up by a substitution pass.'/>
@@ -450,7 +450,7 @@
         <!-- Starting PipeVeins Preset for Ruby. -->
         <ConfigSection>
           <IfCondition condition=':= boplRubyDist = "PipeVeins"'>
-            <Veins name='boplRubyVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x706D' drawWireframe='true' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
+            <Veins name='boplRubyVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x706D' drawWireframe=':= drawWireframes' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -477,7 +477,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplRubyVeinsPipe'  inherits='boplRubyVeins' branchType='Bezier' seed='0x706D' drawWireframe='true' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
+            <Veins name='boplRubyVeinsPipe'  inherits='boplRubyVeins' branchType='Bezier' seed='0x706D' drawWireframe=':= drawWireframes' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre:2' weight='1.0' />
@@ -493,7 +493,7 @@
         <!-- Starting StrategicClouds Preset for Ruby. -->
         <ConfigSection>
           <IfCondition condition=':= boplRubyDist = "StrategicClouds"'>
-            <Cloud name='boplRubyCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
+            <Cloud name='boplRubyCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -518,7 +518,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplRubyHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
+              <Veins name='boplRubyHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -549,7 +549,7 @@
         <!-- Starting Vanilla Preset for Ruby. -->
         <ConfigSection>
           <IfCondition condition=':= boplRubyDist = "Vanilla"'>
-            <StandardGen name='boplRubyStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
+            <StandardGen name='boplRubyStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60C60031' drawBoundBox='false' boundBoxColor='0x60C60031'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -573,7 +573,7 @@
         <!-- Starting PipeVeins Preset for Peridot. -->
         <ConfigSection>
           <IfCondition condition=':= boplPeridotDist = "PipeVeins"'>
-            <Veins name='boplPeridotVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0xA6AC' drawWireframe='true' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
+            <Veins name='boplPeridotVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0xA6AC' drawWireframe=':= drawWireframes' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -600,7 +600,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplPeridotVeinsPipe'  inherits='boplPeridotVeins' branchType='Bezier' seed='0xA6AC' drawWireframe='true' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
+            <Veins name='boplPeridotVeinsPipe'  inherits='boplPeridotVeins' branchType='Bezier' seed='0xA6AC' drawWireframe=':= drawWireframes' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre:4' weight='1.0' />
@@ -616,7 +616,7 @@
         <!-- Starting StrategicClouds Preset for Peridot. -->
         <ConfigSection>
           <IfCondition condition=':= boplPeridotDist = "StrategicClouds"'>
-            <Cloud name='boplPeridotCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
+            <Cloud name='boplPeridotCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -641,7 +641,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplPeridotHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
+              <Veins name='boplPeridotHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -672,7 +672,7 @@
         <!-- Starting Vanilla Preset for Peridot. -->
         <ConfigSection>
           <IfCondition condition=':= boplPeridotDist = "Vanilla"'>
-            <StandardGen name='boplPeridotStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
+            <StandardGen name='boplPeridotStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60076855' drawBoundBox='false' boundBoxColor='0x60076855'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -696,7 +696,7 @@
         <!-- Starting PipeVeins Preset for Topaz. -->
         <ConfigSection>
           <IfCondition condition=':= boplTopazDist = "PipeVeins"'>
-            <Veins name='boplTopazVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0xB7E1' drawWireframe='true' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
+            <Veins name='boplTopazVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0xB7E1' drawWireframe=':= drawWireframes' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -723,7 +723,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplTopazVeinsPipe'  inherits='boplTopazVeins' branchType='Bezier' seed='0xB7E1' drawWireframe='true' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
+            <Veins name='boplTopazVeinsPipe'  inherits='boplTopazVeins' branchType='Bezier' seed='0xB7E1' drawWireframe=':= drawWireframes' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre:6' weight='1.0' />
@@ -739,7 +739,7 @@
         <!-- Starting StrategicClouds Preset for Topaz. -->
         <ConfigSection>
           <IfCondition condition=':= boplTopazDist = "StrategicClouds"'>
-            <Cloud name='boplTopazCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
+            <Cloud name='boplTopazCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -764,7 +764,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplTopazHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
+              <Veins name='boplTopazHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -795,7 +795,7 @@
         <!-- Starting Vanilla Preset for Topaz. -->
         <ConfigSection>
           <IfCondition condition=':= boplTopazDist = "Vanilla"'>
-            <StandardGen name='boplTopazStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
+            <StandardGen name='boplTopazStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60D95A03' drawBoundBox='false' boundBoxColor='0x60D95A03'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -819,7 +819,7 @@
         <!-- Starting PipeVeins Preset for Tanzanite. -->
         <ConfigSection>
           <IfCondition condition=':= boplTanzaniteDist = "PipeVeins"'>
-            <Veins name='boplTanzaniteVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0xA51A' drawWireframe='true' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
+            <Veins name='boplTanzaniteVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0xA51A' drawWireframe=':= drawWireframes' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -827,8 +827,7 @@
               <OreBlock block='BiomesOPlenty:gemOre:8' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <BiomeType name='Snowy'  />
-              <Biome name='Alps'  weight='-1' />
-              <Biome name='Alps Forest'  weight='-1' />
+              <BiomeType name='MISSING'  weight='-1' />
               <Setting name='MotherlodeFrequency' avg=':= 0.270 * _default_ * boplTanzaniteFreq ' range=':= 0.270 * _default_ * boplTanzaniteFreq ' type='normal' scaleTo='base' />
               <Setting name='MotherlodeSize' avg=':= 0 * _default_ * boplTanzaniteSize ' range=':= 0 * _default_ * boplTanzaniteSize ' type='normal' />
               <Setting name='MotherlodeHeight' avg=':= 19 ' range=':= 13 ' type='normal' scaleTo='base' />
@@ -848,7 +847,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplTanzaniteVeinsPipe'  inherits='boplTanzaniteVeins' branchType='Bezier' seed='0xA51A' drawWireframe='true' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
+            <Veins name='boplTanzaniteVeinsPipe'  inherits='boplTanzaniteVeins' branchType='Bezier' seed='0xA51A' drawWireframe=':= drawWireframes' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre:8' weight='1.0' />
@@ -864,7 +863,7 @@
         <!-- Starting StrategicClouds Preset for Tanzanite. -->
         <ConfigSection>
           <IfCondition condition=':= boplTanzaniteDist = "StrategicClouds"'>
-            <Cloud name='boplTanzaniteCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
+            <Cloud name='boplTanzaniteCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -879,8 +878,7 @@
               <OreBlock block='BiomesOPlenty:gemOre:8' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <BiomeType name='Snowy'  />
-              <Biome name='Alps'  weight='-1' />
-              <Biome name='Alps Forest'  weight='-1' />
+              <BiomeType name='MISSING'  weight='-1' />
               <Setting name='CloudRadius' avg=':= 0.449 * _default_ * boplTanzaniteSize ' range=':= 0.449 * _default_ * boplTanzaniteSize ' type='normal' />
               <Setting name='CloudThickness' avg=':= 0.449 * _default_ * boplTanzaniteSize ' range=':= 0.449 * _default_ * boplTanzaniteSize ' type='normal' scaleTo='base' />
               <Setting name='DistributionFrequency' avg=':= 0.202 * _default_ * boplTanzaniteFreq ' range=':= 0.202 * _default_ * boplTanzaniteFreq ' type='normal' scaleTo='base' />
@@ -891,7 +889,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplTanzaniteHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
+              <Veins name='boplTanzaniteHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -922,15 +920,14 @@
         <!-- Starting Vanilla Preset for Tanzanite. -->
         <ConfigSection>
           <IfCondition condition=':= boplTanzaniteDist = "Vanilla"'>
-            <StandardGen name='boplTanzaniteStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
+            <StandardGen name='boplTanzaniteStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x607701B9' drawBoundBox='false' boundBoxColor='0x607701B9'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
               <OreBlock block='BiomesOPlenty:gemOre:8' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <BiomeType name='Snowy'  />
-              <Biome name='Alps'  weight='-1' />
-              <Biome name='Alps Forest'  weight='-1' />
+              <BiomeType name='MISSING'  weight='-1' />
               <Setting name='Size' avg=':= 0.667 * oreSize * boplTanzaniteSize ' range=':= 0.33 * oreSize * boplTanzaniteSize ' type='normal' />
               <Setting name='Frequency' avg=':= 0.667 * oreFreq * boplTanzaniteFreq ' range=':= 0.33 * oreFreq * boplTanzaniteFreq ' type='normal' scaleTo='base' />
               <Setting name='Height' avg=':= 19 ' range=':= 13 ' type='normal' scaleTo='base' />
@@ -948,7 +945,7 @@
         <!-- Starting PipeVeins Preset for Malachite. -->
         <ConfigSection>
           <IfCondition condition=':= boplMalachiteDist = "PipeVeins"'>
-            <Veins name='boplMalachiteVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x5A38' drawWireframe='true' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
+            <Veins name='boplMalachiteVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x5A38' drawWireframe=':= drawWireframes' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -975,7 +972,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplMalachiteVeinsPipe'  inherits='boplMalachiteVeins' branchType='Bezier' seed='0x5A38' drawWireframe='true' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
+            <Veins name='boplMalachiteVeinsPipe'  inherits='boplMalachiteVeins' branchType='Bezier' seed='0x5A38' drawWireframe=':= drawWireframes' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre:10' weight='1.0' />
@@ -991,7 +988,7 @@
         <!-- Starting StrategicClouds Preset for Malachite. -->
         <ConfigSection>
           <IfCondition condition=':= boplMalachiteDist = "StrategicClouds"'>
-            <Cloud name='boplMalachiteCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
+            <Cloud name='boplMalachiteCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1016,7 +1013,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplMalachiteHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
+              <Veins name='boplMalachiteHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1047,7 +1044,7 @@
         <!-- Starting Vanilla Preset for Malachite. -->
         <ConfigSection>
           <IfCondition condition=':= boplMalachiteDist = "Vanilla"'>
-            <StandardGen name='boplMalachiteStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
+            <StandardGen name='boplMalachiteStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60109D81' drawBoundBox='false' boundBoxColor='0x60109D81'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1071,7 +1068,7 @@
         <!-- Starting PipeVeins Preset for Sapphire. -->
         <ConfigSection>
           <IfCondition condition=':= boplSapphireDist = "PipeVeins"'>
-            <Veins name='boplSapphireVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x7474' drawWireframe='true' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
+            <Veins name='boplSapphireVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x7474' drawWireframe=':= drawWireframes' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -1104,7 +1101,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplSapphireVeinsPipe'  inherits='boplSapphireVeins' branchType='Bezier' seed='0x7474' drawWireframe='true' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
+            <Veins name='boplSapphireVeinsPipe'  inherits='boplSapphireVeins' branchType='Bezier' seed='0x7474' drawWireframe=':= drawWireframes' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre:12' weight='1.0' />
@@ -1120,7 +1117,7 @@
         <!-- Starting StrategicClouds Preset for Sapphire. -->
         <ConfigSection>
           <IfCondition condition=':= boplSapphireDist = "StrategicClouds"'>
-            <Cloud name='boplSapphireCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
+            <Cloud name='boplSapphireCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1151,7 +1148,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplSapphireHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
+              <Veins name='boplSapphireHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1182,7 +1179,7 @@
         <!-- Starting Vanilla Preset for Sapphire. -->
         <ConfigSection>
           <IfCondition condition=':= boplSapphireDist = "Vanilla"'>
-            <StandardGen name='boplSapphireStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
+            <StandardGen name='boplSapphireStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x603494C3' drawBoundBox='false' boundBoxColor='0x603494C3'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1212,7 +1209,7 @@
         <!-- Starting PipeVeins Preset for Amber. -->
         <ConfigSection>
           <IfCondition condition=':= boplAmberDist = "PipeVeins"'>
-            <Veins name='boplAmberVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x1FEF' drawWireframe='true' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
+            <Veins name='boplAmberVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x1FEF' drawWireframe=':= drawWireframes' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -1242,7 +1239,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplAmberVeinsPipe'  inherits='boplAmberVeins' branchType='Bezier' seed='0x1FEF' drawWireframe='true' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
+            <Veins name='boplAmberVeinsPipe'  inherits='boplAmberVeins' branchType='Bezier' seed='0x1FEF' drawWireframe=':= drawWireframes' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <ReplacesOre block='stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre:14' weight='1.0' />
@@ -1258,7 +1255,7 @@
         <!-- Starting StrategicClouds Preset for Amber. -->
         <ConfigSection>
           <IfCondition condition=':= boplAmberDist = "StrategicClouds"'>
-            <Cloud name='boplAmberCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
+            <Cloud name='boplAmberCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1286,7 +1283,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplAmberHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
+              <Veins name='boplAmberHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1317,7 +1314,7 @@
         <!-- Starting Vanilla Preset for Amber. -->
         <ConfigSection>
           <IfCondition condition=':= boplAmberDist = "Vanilla"'>
-            <StandardGen name='boplAmberStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
+            <StandardGen name='boplAmberStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60FE9D1B' drawBoundBox='false' boundBoxColor='0x60FE9D1B'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1377,7 +1374,7 @@
         <!-- Starting PipeVeins Preset for Amethyst. -->
         <ConfigSection>
           <IfCondition condition=':= boplAmethystDist = "PipeVeins"'>
-            <Veins name='boplAmethystVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x58D8' drawWireframe='true' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
+            <Veins name='boplAmethystVeins'  inherits='PresetPipeVeins' branchType='Bezier' seed='0x58D8' drawWireframe=':= drawWireframes' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
               <Description>
                 Short sparsely filled veins  sloping up from near the
                 bottom  of the map.
@@ -1404,7 +1401,7 @@
             </Veins>
 
             <!-- Configuring contained material. -->
-            <Veins name='boplAmethystVeinsPipe'  inherits='boplAmethystVeins' branchType='Bezier' seed='0x58D8' drawWireframe='true' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
+            <Veins name='boplAmethystVeinsPipe'  inherits='boplAmethystVeins' branchType='Bezier' seed='0x58D8' drawWireframe=':= drawWireframes' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
               <OreBlock block='minecraft:lava' weight='1.0' />
               <Replaces block='minecraft:end_stone' weight='1.0' />
               <Replaces block='BiomesOPlenty:gemOre' weight='1.0' />
@@ -1420,7 +1417,7 @@
         <!-- Starting StrategicClouds Preset for Amethyst. -->
         <ConfigSection>
           <IfCondition condition=':= boplAmethystDist = "StrategicClouds"'>
-            <Cloud name='boplAmethystCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
+            <Cloud name='boplAmethystCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1445,7 +1442,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='boplAmethystHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
+              <Veins name='boplAmethystHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1476,7 +1473,7 @@
         <!-- Starting Vanilla Preset for Amethyst. -->
         <ConfigSection>
           <IfCondition condition=':= boplAmethystDist = "Vanilla"'>
-            <StandardGen name='boplAmethystStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
+            <StandardGen name='boplAmethystStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60DD4EEA' drawBoundBox='false' boundBoxColor='0x60DD4EEA'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>

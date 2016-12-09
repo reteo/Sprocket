@@ -32,7 +32,7 @@
         <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Forestry ores.'/>
         <Choice value=':= ?false' displayValue='No' description='Forestry ores will be handled by Minecraft directly.'/>
       </OptionChoice>
-      <OptionChoice name='cleanUpForestry' displayName='Use Forestry Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupForestry'>
+      <OptionChoice name='cleanUpForestry' displayName='Use Forestry Cleanup?' default='true' displayState=':= if(?enableForestry, "shown", "hidden")' displayGroup='groupForestry'>
         <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Forestry ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
         <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Forestry ores.'/>
         <Choice value=':= ?false' displayValue='No' description='Forestry ores do not need to be cleaned up by a substitution pass.'/>
@@ -215,7 +215,7 @@
         <!-- Starting SparseVeins Preset for Apatite. -->
         <ConfigSection>
           <IfCondition condition=':= frstApatiteDist = "SparseVeins"'>
-            <Veins name='frstApatiteVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
+            <Veins name='frstApatiteVeins'  inherits='PresetSparseVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
               <Description>
                 Large veins filled very lightly  with ore.  Because
                 they contain  less ore per volume, these veins  are
@@ -253,7 +253,7 @@
         <!-- Starting StrategicClouds Preset for Apatite. -->
         <ConfigSection>
           <IfCondition condition=':= frstApatiteDist = "StrategicClouds"'>
-            <Cloud name='frstApatiteCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
+            <Cloud name='frstApatiteCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -278,7 +278,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='frstApatiteHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
+              <Veins name='frstApatiteHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -309,7 +309,7 @@
         <!-- Starting Vanilla Preset for Apatite. -->
         <ConfigSection>
           <IfCondition condition=':= frstApatiteDist = "Vanilla"'>
-            <StandardGen name='frstApatiteStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
+            <StandardGen name='frstApatiteStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x6052BBEF' drawBoundBox='false' boundBoxColor='0x6052BBEF'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -333,7 +333,7 @@
         <!-- Starting LayeredVeins Preset for Copper. -->
         <ConfigSection>
           <IfCondition condition=':= frstCopperDist = "LayeredVeins"'>
-            <Veins name='frstCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
+            <Veins name='frstCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -366,7 +366,7 @@
         <!-- Starting StrategicClouds Preset for Copper. -->
         <ConfigSection>
           <IfCondition condition=':= frstCopperDist = "StrategicClouds"'>
-            <Cloud name='frstCopperCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
+            <Cloud name='frstCopperCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -391,7 +391,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='frstCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
+              <Veins name='frstCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -422,7 +422,7 @@
         <!-- Starting Vanilla Preset for Copper. -->
         <ConfigSection>
           <IfCondition condition=':= frstCopperDist = "Vanilla"'>
-            <StandardGen name='frstCopperStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
+            <StandardGen name='frstCopperStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60E3B78E' drawBoundBox='false' boundBoxColor='0x60E3B78E'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -446,7 +446,7 @@
         <!-- Starting LayeredVeins Preset for Tin. -->
         <ConfigSection>
           <IfCondition condition=':= frstTinDist = "LayeredVeins"'>
-            <Veins name='frstTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
+            <Veins name='frstTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -479,7 +479,7 @@
         <!-- Starting StrategicClouds Preset for Tin. -->
         <ConfigSection>
           <IfCondition condition=':= frstTinDist = "StrategicClouds"'>
-            <Cloud name='frstTinCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
+            <Cloud name='frstTinCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -504,7 +504,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='frstTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
+              <Veins name='frstTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -535,7 +535,7 @@
         <!-- Starting Vanilla Preset for Tin. -->
         <ConfigSection>
           <IfCondition condition=':= frstTinDist = "Vanilla"'>
-            <StandardGen name='frstTinStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
+            <StandardGen name='frstTinStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60D1EDF1' drawBoundBox='false' boundBoxColor='0x60D1EDF1'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>

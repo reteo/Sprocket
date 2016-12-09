@@ -37,7 +37,7 @@
         <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Tinkers Construct ores.'/>
         <Choice value=':= ?false' displayValue='No' description='Tinkers Construct ores will be handled by Minecraft directly.'/>
       </OptionChoice>
-      <OptionChoice name='cleanUpTinkersConstruct' displayName='Use Tinkers Construct Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupTinkersConstruct'>
+      <OptionChoice name='cleanUpTinkersConstruct' displayName='Use Tinkers Construct Cleanup?' default='true' displayState=':= if(?enableTinkersConstruct, "shown", "hidden")' displayGroup='groupTinkersConstruct'>
         <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Tinkers Construct ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
         <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Tinkers Construct ores.'/>
         <Choice value=':= ?false' displayValue='No' description='Tinkers Construct ores do not need to be cleaned up by a substitution pass.'/>
@@ -930,7 +930,7 @@
         <!-- Starting LayeredVeins Preset for Copper. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCopperDist = "LayeredVeins"'>
-            <Veins name='ticoCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <Veins name='ticoCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -963,7 +963,7 @@
         <!-- Starting StrategicClouds Preset for Copper. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCopperDist = "StrategicClouds"'>
-            <Cloud name='ticoCopperCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <Cloud name='ticoCopperCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -988,7 +988,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+              <Veins name='ticoCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1019,7 +1019,7 @@
         <!-- Starting Vanilla Preset for Copper. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCopperDist = "Vanilla"'>
-            <StandardGen name='ticoCopperStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <StandardGen name='ticoCopperStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1043,7 +1043,7 @@
         <!-- Starting LayeredVeins Preset for Mountain Copper. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainCopperDist = "LayeredVeins"'>
-            <Veins name='ticoMountainCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <Veins name='ticoMountainCopperVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1076,7 +1076,7 @@
         <!-- Starting StrategicClouds Preset for Mountain  Copper. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainCopperDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainCopperCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <Cloud name='ticoMountainCopperCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1101,7 +1101,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+              <Veins name='ticoMountainCopperHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1132,7 +1132,7 @@
         <!-- Starting Vanilla Preset for Mountain Copper. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainCopperDist = "Vanilla"'>
-            <StandardGen name='ticoMountainCopperStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <StandardGen name='ticoMountainCopperStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1156,7 +1156,7 @@
         <!-- Starting LayeredVeins Preset for Tin. -->
         <ConfigSection>
           <IfCondition condition=':= ticoTinDist = "LayeredVeins"'>
-            <Veins name='ticoTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Veins name='ticoTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1189,7 +1189,7 @@
         <!-- Starting StrategicClouds Preset for Tin. -->
         <ConfigSection>
           <IfCondition condition=':= ticoTinDist = "StrategicClouds"'>
-            <Cloud name='ticoTinCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Cloud name='ticoTinCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1214,7 +1214,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+              <Veins name='ticoTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1245,7 +1245,7 @@
         <!-- Starting Vanilla Preset for Tin. -->
         <ConfigSection>
           <IfCondition condition=':= ticoTinDist = "Vanilla"'>
-            <StandardGen name='ticoTinStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <StandardGen name='ticoTinStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1269,7 +1269,7 @@
         <!-- Starting LayeredVeins Preset for Mountain Tin. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainTinDist = "LayeredVeins"'>
-            <Veins name='ticoMountainTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Veins name='ticoMountainTinVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1302,7 +1302,7 @@
         <!-- Starting StrategicClouds Preset for Mountain Tin. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainTinDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainTinCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Cloud name='ticoMountainTinCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1327,7 +1327,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+              <Veins name='ticoMountainTinHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1358,7 +1358,7 @@
         <!-- Starting Vanilla Preset for Mountain Tin. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainTinDist = "Vanilla"'>
-            <StandardGen name='ticoMountainTinStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <StandardGen name='ticoMountainTinStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1382,7 +1382,7 @@
         <!-- Starting LayeredVeins Preset for Aluminum. -->
         <ConfigSection>
           <IfCondition condition=':= ticoAluminumDist = "LayeredVeins"'>
-            <Veins name='ticoAluminumVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Veins name='ticoAluminumVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1415,7 +1415,7 @@
         <!-- Starting StrategicClouds Preset for Aluminum. -->
         <ConfigSection>
           <IfCondition condition=':= ticoAluminumDist = "StrategicClouds"'>
-            <Cloud name='ticoAluminumCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Cloud name='ticoAluminumCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1440,7 +1440,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoAluminumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+              <Veins name='ticoAluminumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1471,7 +1471,7 @@
         <!-- Starting Vanilla Preset for Aluminum. -->
         <ConfigSection>
           <IfCondition condition=':= ticoAluminumDist = "Vanilla"'>
-            <StandardGen name='ticoAluminumStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <StandardGen name='ticoAluminumStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1495,7 +1495,7 @@
         <!-- Starting LayeredVeins Preset for Mountain  Aluminum. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainAluminumDist = "LayeredVeins"'>
-            <Veins name='ticoMountainAluminumVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Veins name='ticoMountainAluminumVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1528,7 +1528,7 @@
         <!-- Starting StrategicClouds Preset for Mountain  Aluminum. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainAluminumDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainAluminumCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Cloud name='ticoMountainAluminumCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1553,7 +1553,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainAluminumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+              <Veins name='ticoMountainAluminumHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1585,7 +1585,7 @@
         <!-- Starting Vanilla Preset for Mountain Aluminum. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainAluminumDist = "Vanilla"'>
-            <StandardGen name='ticoMountainAluminumStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <StandardGen name='ticoMountainAluminumStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1609,7 +1609,7 @@
         <!-- Starting LayeredVeins Preset for Iron Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoIronGravelDist = "LayeredVeins"'>
-            <Veins name='ticoIronGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+            <Veins name='ticoIronGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1642,7 +1642,7 @@
         <!-- Starting StrategicClouds Preset for Iron Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoIronGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoIronGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+            <Cloud name='ticoIronGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1667,7 +1667,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoIronGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+              <Veins name='ticoIronGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1698,7 +1698,7 @@
         <!-- Starting Vanilla Preset for Iron Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoIronGravelDist = "Vanilla"'>
-            <StandardGen name='ticoIronGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+            <StandardGen name='ticoIronGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1722,7 +1722,7 @@
         <!-- Starting LayeredVeins Preset for Mountain Iron  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainIronGravelDist = "LayeredVeins"'>
-            <Veins name='ticoMountainIronGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+            <Veins name='ticoMountainIronGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1757,7 +1757,7 @@
              Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainIronGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainIronGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+            <Cloud name='ticoMountainIronGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1782,7 +1782,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainIronGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+              <Veins name='ticoMountainIronGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1814,7 +1814,7 @@
         <!-- Starting Vanilla Preset for Mountain Iron Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainIronGravelDist = "Vanilla"'>
-            <StandardGen name='ticoMountainIronGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
+            <StandardGen name='ticoMountainIronGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60DDC2AF' drawBoundBox='false' boundBoxColor='0x60DDC2AF'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1838,7 +1838,7 @@
         <!-- Starting LayeredVeins Preset for Gold Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoGoldGravelDist = "LayeredVeins"'>
-            <Veins name='ticoGoldGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+            <Veins name='ticoGoldGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1871,7 +1871,7 @@
         <!-- Starting StrategicClouds Preset for Gold Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoGoldGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoGoldGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+            <Cloud name='ticoGoldGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -1896,7 +1896,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoGoldGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+              <Veins name='ticoGoldGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -1927,7 +1927,7 @@
         <!-- Starting Vanilla Preset for Gold Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoGoldGravelDist = "Vanilla"'>
-            <StandardGen name='ticoGoldGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+            <StandardGen name='ticoGoldGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -1951,7 +1951,7 @@
         <!-- Starting LayeredVeins Preset for Mountain Gold  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainGoldGravelDist = "LayeredVeins"'>
-            <Veins name='ticoMountainGoldGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+            <Veins name='ticoMountainGoldGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -1986,7 +1986,7 @@
              Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainGoldGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainGoldGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+            <Cloud name='ticoMountainGoldGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2011,7 +2011,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainGoldGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+              <Veins name='ticoMountainGoldGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2043,7 +2043,7 @@
         <!-- Starting Vanilla Preset for Mountain Gold Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainGoldGravelDist = "Vanilla"'>
-            <StandardGen name='ticoMountainGoldGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
+            <StandardGen name='ticoMountainGoldGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60EAEF57' drawBoundBox='false' boundBoxColor='0x60EAEF57'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2067,7 +2067,7 @@
         <!-- Starting LayeredVeins Preset for Copper Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCopperGravelDist = "LayeredVeins"'>
-            <Veins name='ticoCopperGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <Veins name='ticoCopperGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -2100,7 +2100,7 @@
         <!-- Starting StrategicClouds Preset for Copper  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCopperGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoCopperGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <Cloud name='ticoCopperGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2125,7 +2125,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoCopperGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+              <Veins name='ticoCopperGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2156,7 +2156,7 @@
         <!-- Starting Vanilla Preset for Copper Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCopperGravelDist = "Vanilla"'>
-            <StandardGen name='ticoCopperGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
+            <StandardGen name='ticoCopperGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60FF8E2B' drawBoundBox='false' boundBoxColor='0x60FF8E2B'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2180,7 +2180,7 @@
         <!-- Starting LayeredVeins Preset for Tin Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoTinGravelDist = "LayeredVeins"'>
-            <Veins name='ticoTinGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Veins name='ticoTinGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -2213,7 +2213,7 @@
         <!-- Starting StrategicClouds Preset for Tin Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoTinGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoTinGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Cloud name='ticoTinGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2238,7 +2238,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoTinGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+              <Veins name='ticoTinGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2269,7 +2269,7 @@
         <!-- Starting Vanilla Preset for Tin Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoTinGravelDist = "Vanilla"'>
-            <StandardGen name='ticoTinGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <StandardGen name='ticoTinGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2293,7 +2293,7 @@
         <!-- Starting LayeredVeins Preset for Mountain Tin  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainTinGravelDist = "LayeredVeins"'>
-            <Veins name='ticoMountainTinGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Veins name='ticoMountainTinGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -2326,7 +2326,7 @@
         <!-- Starting StrategicClouds Preset for Mountain Tin  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainTinGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainTinGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <Cloud name='ticoMountainTinGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2351,7 +2351,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainTinGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+              <Veins name='ticoMountainTinGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2383,7 +2383,7 @@
         <!-- Starting Vanilla Preset for Mountain Tin Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainTinGravelDist = "Vanilla"'>
-            <StandardGen name='ticoMountainTinGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
+            <StandardGen name='ticoMountainTinGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60E8E8E8' drawBoundBox='false' boundBoxColor='0x60E8E8E8'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2407,7 +2407,7 @@
         <!-- Starting LayeredVeins Preset for Aluminum Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoAluminumGravelDist = "LayeredVeins"'>
-            <Veins name='ticoAluminumGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Veins name='ticoAluminumGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -2440,7 +2440,7 @@
         <!-- Starting StrategicClouds Preset for Aluminum  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoAluminumGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoAluminumGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Cloud name='ticoAluminumGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2465,7 +2465,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoAluminumGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+              <Veins name='ticoAluminumGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2496,7 +2496,7 @@
         <!-- Starting Vanilla Preset for Aluminum Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoAluminumGravelDist = "Vanilla"'>
-            <StandardGen name='ticoAluminumGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <StandardGen name='ticoAluminumGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2521,7 +2521,7 @@
              Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainAluminumGravelDist = "LayeredVeins"'>
-            <Veins name='ticoMountainAluminumGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Veins name='ticoMountainAluminumGravelVeins'  inherits='PresetLayeredVeins' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Small, fairly rare motherlodes  with 2-4 horizontal
                 veins each.
@@ -2556,7 +2556,7 @@
              Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainAluminumGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoMountainAluminumGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <Cloud name='ticoMountainAluminumGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2581,7 +2581,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoMountainAluminumGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+              <Veins name='ticoMountainAluminumGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2613,7 +2613,7 @@
         <!-- Starting Vanilla Preset for Mountain Aluminum  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoMountainAluminumGravelDist = "Vanilla"'>
-            <StandardGen name='ticoMountainAluminumGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
+            <StandardGen name='ticoMountainAluminumGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60EDEDED' drawBoundBox='false' boundBoxColor='0x60EDEDED'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2687,7 +2687,7 @@
         <!-- Starting SmallDeposits Preset for Cobalt. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCobaltDist = "SmallDeposits"'>
-            <Veins name='ticoCobaltVeins'  inherits='PresetSmallDeposits' branchType='Bezier' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+            <Veins name='ticoCobaltVeins'  inherits='PresetSmallDeposits' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
               <Description>
                 Small motherlodes without any  branches.  Similar to
                 the  deposits produced by StandardGen  distributions.
@@ -2720,7 +2720,7 @@
         <!-- Starting StrategicClouds Preset for Cobalt. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCobaltDist = "StrategicClouds"'>
-            <Cloud name='ticoCobaltCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+            <Cloud name='ticoCobaltCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2745,7 +2745,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoCobaltHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+              <Veins name='ticoCobaltHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2776,7 +2776,7 @@
         <!-- Starting Vanilla Preset for Cobalt. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCobaltDist = "Vanilla"'>
-            <StandardGen name='ticoCobaltStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+            <StandardGen name='ticoCobaltStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2800,7 +2800,7 @@
         <!-- Starting SmallDeposits Preset for Ardite. -->
         <ConfigSection>
           <IfCondition condition=':= ticoArditeDist = "SmallDeposits"'>
-            <Veins name='ticoArditeVeins'  inherits='PresetSmallDeposits' branchType='Bezier' drawWireframe='true' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
+            <Veins name='ticoArditeVeins'  inherits='PresetSmallDeposits' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
               <Description>
                 Small motherlodes without any  branches.  Similar to
                 the  deposits produced by StandardGen  distributions.
@@ -2833,7 +2833,7 @@
         <!-- Starting StrategicClouds Preset for Ardite. -->
         <ConfigSection>
           <IfCondition condition=':= ticoArditeDist = "StrategicClouds"'>
-            <Cloud name='ticoArditeCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
+            <Cloud name='ticoArditeCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2858,7 +2858,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoArditeHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
+              <Veins name='ticoArditeHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -2889,7 +2889,7 @@
         <!-- Starting Vanilla Preset for Ardite. -->
         <ConfigSection>
           <IfCondition condition=':= ticoArditeDist = "Vanilla"'>
-            <StandardGen name='ticoArditeStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
+            <StandardGen name='ticoArditeStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x60F48A00' drawBoundBox='false' boundBoxColor='0x60F48A00'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>
@@ -2913,7 +2913,7 @@
         <!-- Starting SmallDeposits Preset for Cobalt Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCobaltGravelDist = "SmallDeposits"'>
-            <Veins name='ticoCobaltGravelVeins'  inherits='PresetSmallDeposits' branchType='Bezier' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+            <Veins name='ticoCobaltGravelVeins'  inherits='PresetSmallDeposits' branchType='Bezier' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
               <Description>
                 Small motherlodes without any  branches.  Similar to
                 the  deposits produced by StandardGen  distributions.
@@ -2946,7 +2946,7 @@
         <!-- Starting StrategicClouds Preset for Cobalt  Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCobaltGravelDist = "StrategicClouds"'>
-            <Cloud name='ticoCobaltGravelCloud'  inherits='PresetStrategicCloud' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+            <Cloud name='ticoCobaltGravelCloud'  inherits='PresetStrategicCloud' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
               <Description>
                 Large irregular clouds filled  lightly with ore.
                 These are  huge, spanning several adjacent  chunks,
@@ -2971,7 +2971,7 @@
               <Setting name='OreDensity' avg=':= _default_ ' range=':= _default_ ' type='normal' scaleTo='base' />
               <Setting name='OreVolumeNoiseCutoff' avg=':= _default_ ' range=':= _default_ ' type='normal' />
               <Setting name='OreRadiusMult' avg=':= _default_ ' range=':= _default_ ' type='normal' />
-              <Veins name='ticoCobaltGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+              <Veins name='ticoCobaltGravelHintVeins' branchType='Bezier'  inherits='PresetHintVeins' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
                 <Description>
                   Single blocks, generously  scattered through all
                   heights  (density is about that of  vanilla iron
@@ -3002,7 +3002,7 @@
         <!-- Starting Vanilla Preset for Cobalt Gravel. -->
         <ConfigSection>
           <IfCondition condition=':= ticoCobaltGravelDist = "Vanilla"'>
-            <StandardGen name='ticoCobaltGravelStandard'  inherits='PresetStandardGen' drawWireframe='true' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
+            <StandardGen name='ticoCobaltGravelStandard'  inherits='PresetStandardGen' drawWireframe=':= drawWireframes' wireframeColor='0x601D62B8' drawBoundBox='false' boundBoxColor='0x601D62B8'>
               <Description>
                 A master preset for standardgen  ore distributions.
               </Description>

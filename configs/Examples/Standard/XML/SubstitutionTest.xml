@@ -30,7 +30,7 @@
       <Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle Substitution Test ores.'/>
       <Choice value=':= ?false' displayValue='No' description='Substitution Test ores will be handled by Minecraft directly.'/>
     </OptionChoice>
-    <OptionChoice name='cleanUpSubstitutionTest' displayName='Use Substitution Test Cleanup?' default='true' displayState='shown_dynamic' displayGroup='groupSubstitutionTest'>
+    <OptionChoice name='cleanUpSubstitutionTest' displayName='Use Substitution Test Cleanup?' default='true' displayState=':= if(?enableSubstitutionTest, "shown", "hidden")' displayGroup='groupSubstitutionTest'>
       <Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of Substitution Test ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>
       <Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up Substitution Test ores.'/>
       <Choice value=':= ?false' displayValue='No' description='Substitution Test ores do not need to be cleaned up by a substitution pass.'/>
