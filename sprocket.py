@@ -740,7 +740,7 @@ def placeNear(direction, blockId):
 # Wireframes
 def setWireframe(active, color):
     if active == "yes":
-        return "drawWireframe='true' wireframeColor='0x60"+hashRemove(color)+"'"
+        return "drawWireframe=':= drawWireframes' wireframeColor='0x60"+hashRemove(color)+"'"
     else:
         return "drawWireframe='false' wireframeColor='0x60"+hashRemove(color)+"'"
     
@@ -1207,15 +1207,15 @@ class substitutePreset:
     
     def addAvoidBiomesList(self, biomeIndex):
         if checkOption(biomeAvoidTypes[biomeIndex]):
-            for biomeStep in range(0, len(biomeAvoidTypes[biomeIndex])):
-                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidTypes[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            for biomeStep in range(0, len(biomeAvoidNames[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidNames[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
             
         return
     
     def addAvoidBiomeTypesList(self, biomeIndex):
         if checkOption(biomeAvoidNames[biomeIndex]):
-            for biomeStep in range(0, len(biomeAvoidNames[biomeIndex])):
-                self._presetScript += cogFormatLine(biomeIgnore("Biome", biomeAvoidNames[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
+            for biomeStep in range(0, len(biomeAvoidTypes[biomeIndex])):
+                self._presetScript += cogFormatLine(biomeIgnore("BiomeType", biomeAvoidTypes[biomeIndex][biomeStep], biomeRainfall[biomeIndex], biomeTmperature[biomeIndex]))
             
         return
         
@@ -2108,10 +2108,7 @@ def modCleanupState():
 def controlsSetup(blockIndex):    
     controlsOutput = ""
 
-    if modDetect.lower() == "minecraft":
-        controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState=':= \"shown\"' displayGroup='group"+modConfigName+"'>")
-    else:
-        controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState=':= if(?enable"+modConfigName+", \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    controlsOutput += cogFormatLine("<OptionChoice name='"+blockSettingName[blockIndex]+"Dist'"+ifDistActive(distActive[blockIndex])+" displayState=':= if(?enable"+modConfigName+", \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
     cogIndent(1)
     controlsOutput += cogFormatLine("<Description> Controls how "+blockName[blockIndex]+" is generated </Description>")
     controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+"</DisplayName>")
@@ -2123,20 +2120,14 @@ def controlsSetup(blockIndex):
     
     cogIndent(-1)
     controlsOutput += cogFormatLine("</OptionChoice>")
-    if modDetect.lower() == "minecraft":
-        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?advOptions, \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
-    else:
-        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Freq' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
 
     cogIndent(1)
     controlsOutput += cogFormatLine("<Description> Frequency multiplier for "+modName+" "+blockName[blockIndex]+" distributions </Description>")
     controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+" Freq.</DisplayName>")
     cogIndent(-1)
     controlsOutput += cogFormatLine("</OptionNumeric>")
-    if modDetect.lower() == "minecraft":
-        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?advOptions, \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
-    else:
-        controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    controlsOutput += cogFormatLine("<OptionNumeric name='"+blockSettingName[blockIndex]+"Size' default='1'  min='0' max='5' displayState=':= if(?enable"+modConfigName+", if(?advOptions, \"shown\", \"hidden\"), \"hidden\")' displayGroup='group"+modConfigName+"'>")
     cogIndent(1)
     controlsOutput += cogFormatLine("<Description> Size multiplier for "+modName+" "+blockName[blockIndex]+" distributions </Description>")
     controlsOutput += cogFormatLine("<DisplayName>"+modName+" "+blockName[blockIndex]+" Size</DisplayName>")
@@ -2302,7 +2293,7 @@ def initCleanup(dimName):
         chosenBlocks = chosenBlockList(uniqueSections[sectionSelect],dimName)
         
         cleanupSubOutput += "\n"
-        if modDetect.lower() != "minecraft":
+        if (modDetect.lower() != "minecraft") and (modDetect.lower() != "none"):
           cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?cleanUp"+modConfigName+"'>")
           cogIndent(1)
         cleanupSubOutput += cogFormatLine("<IfCondition condition=':= ?blockExists(\""+uniqueSections[sectionSelect]+"\")'>")
@@ -2328,7 +2319,7 @@ def initCleanup(dimName):
         cleanupSubOutput += cogFormatLine("</Substitute>")
         cogIndent(-1)
         cleanupSubOutput += cogFormatLine("</IfCondition>")
-        if modDetect.lower() != "minecraft":
+        if (modDetect.lower() != "minecraft") and (modDetect.lower() != "none"):
           cogIndent(-1)
           cleanupSubOutput += cogFormatLine("</IfCondition>")
         cleanupSubOutput += "\n"
@@ -2361,23 +2352,44 @@ def configSetupSection():
     cogIndent(-1)
     setupOutput += cogFormatLine("</OptionDisplayGroup>")
     
-    if modDetect.lower() != "minecraft":
-        # New option, designed to allow the player to bypass specific mods in favor of others.  By default, always enabled.
-        setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Setup?' default='"+modHandleState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+    if modName.lower() == "vanilla":
+        setupOutput += cogFormatLine("<OptionDisplayGroup name='vanillaHiddenAssignments' displayName='"+modName+"' displayState='hidden'>")
+        cogIndent(1)
+        setupOutput += cogFormatLine("<Description>")
+        cogIndent(1)
+        setupOutput += cogFormatLine("Hidden options solely for variable assignment.")
+        cogIndent(-1)
+        setupOutput += cogFormatLine("</Description>")
+        cogIndent(-1)
+        setupOutput += cogFormatLine("</OptionDisplayGroup>")
+
+    
+    # New option, designed to allow the player to bypass specific mods in favor of others.  By default, always enabled.
+    setupOutput += cogFormatLine("<OptionChoice name='enable"+modConfigName+"' displayName='Handle "+modName+" Setup?' default='"+modHandleState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
+    cogIndent(1)    
+    setupOutput += cogFormatLine("<Description> Should Custom Ore Generation handle "+modName+" ore generation? </Description>")
+    setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle "+modName+" ores.'/>")
+    setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores will be handled by Minecraft directly.'/>")
+    cogIndent(-1)
+    setupOutput += cogFormatLine("</OptionChoice>")
+    
+    if modName.lower() == "vanilla":
+        setupOutput += cogFormatLine("<!-- This is hidden, and is for internal configuration only. -->")
+        setupOutput += cogFormatLine("<OptionChoice name='vanillaOreGen' displayName='Allow Vanilla Ore Generation?' default=':= !?enable"+modConfigName+"' displayState='hidden' displayGroup='vanillaHiddenAssignments'>")
         cogIndent(1)    
         setupOutput += cogFormatLine("<Description> Should Custom Ore Generation handle "+modName+" ore generation? </Description>")
-        setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use Custom Ore Generation to handle "+modName+" ores.'/>")
-        setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores will be handled by the mod itself.'/>")
+        setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Keep the vanilla oregen disabled.'/>")
+        setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores will be handled by Minecraft directly.'/>")
         cogIndent(-1)
         setupOutput += cogFormatLine("</OptionChoice>")
-        
-        setupOutput += cogFormatLine("<OptionChoice name='cleanUp"+modConfigName+"' displayName='Use "+modName+" Cleanup?' default='"+modCleanupState()+"' displayState='shown_dynamic' displayGroup='group"+modConfigName+"'>")
-        cogIndent(1)    
-        setupOutput += cogFormatLine("<Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of "+modName+" ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>")
-        setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up "+modName+" ores.'/>")
-        setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores do not need to be cleaned up by a substitution pass.'/>")
-        cogIndent(-1)
-        setupOutput += cogFormatLine("</OptionChoice>")
+    
+    setupOutput += cogFormatLine("<OptionChoice name='cleanUp"+modConfigName+"' displayName='Use "+modName+" Cleanup?' default='"+modCleanupState()+"' displayState=':= if(?enable"+modConfigName+", \"shown\", \"hidden\")' displayGroup='group"+modConfigName+"'>")
+    cogIndent(1)    
+    setupOutput += cogFormatLine("<Description> Should Custom Ore Generation use the Substitution Pass to remove all instances of "+modName+" ore from the world?  If the mod's oregen can be turned off in its configuration, then it's recommended to do so, as the substitution pass can slow the game significantly.  If this option is disabled without disabling the mod's own ore generation, you'll end up with two oregens working at once, flooding the world with ore.  Enabled by default to ensure the ores are completely removed. </Description>")
+    setupOutput += cogFormatLine("<Choice value=':= ?true' displayValue='Yes' description='Use the substitution pass to clean up "+modName+" ores.'/>")
+    setupOutput += cogFormatLine("<Choice value=':= ?false' displayValue='No' description='"+modName+" ores do not need to be cleaned up by a substitution pass.'/>")
+    cogIndent(-1)
+    setupOutput += cogFormatLine("</OptionChoice>")
     
     for blockSelect in range(0, len(blockName)):
         setupOutput += "\n"
@@ -2454,7 +2466,7 @@ def mainConfigStructure():
     
     configOutput += "\n\n\n\n" 
         
-    if modDetect !="minecraft": # Don't use a detect line for vanilla minecraft!
+    if (modDetect.lower() != "minecraft") and (modDetect.lower() != "none"): # Vanilla minecraft, or self-contained configurations need not be checked.
         configOutput += cogFormatComment("Is the \""+modName+"\" mod on the system?  Let's find out!")
         configOutput += cogFormatLine("<IfModInstalled name=\""+modDetect+"\">")
         configOutput += "\n"
@@ -2470,10 +2482,9 @@ def mainConfigStructure():
     configOutput += configSetupSection()
     configOutput += "\n"    
     
-    if modDetect.lower() != "minecraft":
-        # Now, let's make sure we want to do this... a new option was added in the menu to bypass COG for specific mods.
-        configOutput += cogFormatLine("<IfCondition condition=':= ?enable"+modConfigName+"'>")
-        cogIndent(1)
+    # Now, let's make sure we want to do this... a new option was added in the menu to bypass COG for specific mods.
+    configOutput += cogFormatLine("<IfCondition condition=':= ?enable"+modConfigName+"'>")
+    cogIndent(1)
     
     # Next, let's get the worlds prepared.  For now, we're limited to the
     # Overworld, Nether, and End, but as new generators can be detected, we can
@@ -2496,16 +2507,15 @@ def mainConfigStructure():
     configOutput += dimensionSetup("RFTools", "GenericChunkProvider")
     configOutput += dimensionSetup("MystCraft", "ChunkProviderMyst")
         
-    if modDetect.lower() != "minecraft":     
-        cogIndent(-1)
-        configOutput += cogFormatLine("</IfCondition>")
+    cogIndent(-1)
+    configOutput += cogFormatLine("</IfCondition>")
         
     cogIndent(-1)
     configOutput += "\n"
     configOutput += cogFormatLine("</ConfigSection>")
     configOutput += cogFormatComment("Configuration for Custom Ore Generation Complete!")
             
-    if modDetect != "minecraft": # Don't use a detect line for vanilla minecraft!
+    if (modDetect.lower() != "minecraft") and (modDetect.lower() != "none"): # Don't use a detect line for vanilla minecraft or self-contained configurations.
         cogIndent(-1)
         configOutput += "\n"
         configOutput += cogFormatLine("</IfModInstalled>")
