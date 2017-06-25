@@ -1,3 +1,5 @@
+### NOTE: This branch is for a complete rewrite of the 1.7.10 version.
+
 # Sprocket
 Configuration Utility for Custom Ore Gen: First Revival mod
 (http://tinyurl.com/qdpekog)
